@@ -14,13 +14,13 @@ function InsertInterview(props){
           setMessage("동의하시게나");
           return false;
       } 
-      if($('#wr_subject').val() == '' ){
-        $('#wr_subject').focus();
+      if($('#cyh_subject').val() == '' ){
+        $('#cyh_subject').focus();
         setMessage("제목넣기");       
         return false;
       } 
-      if($('#wr_content').val() == '' ){
-        $('#wr_content').focus();
+      if($('#cyh_content').val() == '' ){
+        $('#cyh_content').focus();
         setMessage("내용넣기");       
         return false;
     }                  
@@ -83,15 +83,15 @@ function InsertInterview(props){
           <input type='hidden' name='mapperid' value={props.dbinfo.mapperid} />
           <div className='formStyle'>
                 <dl>
-                    <dt><label htmlFor='wr_subject'>인터뷰제목</label></dt>
+                    <dt><label htmlFor='cyh_subject'>인터뷰제목</label></dt>
                     <dd>
-                        <input type='text' name='wr_subject' id="wr_subject"  />
+                        <input type='text' name='cyh_subject' id="cyh_subject"  />
                     </dd>
                 </dl>
                 <dl>
                     <dt><label htmlFor="wr_content">인터뷰내용</label></dt>
                     <dd>
-                        <textarea rows={5} name="wr_content" id="wr_content"   >
+                        <textarea rows={5} name="cyh_content" id="cyh_content"   >
                         </textarea>
                     </dd>
                 </dl>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="introduceSQL">
+    <select id="interviewList">
+        select 
+            *
+        from cyh_preinterview.cyh_interview_new
+    </select>
+    <insert id="interviewInsert">
+        insert into 
+            cyh_preinterview.cyh_interview_new (
+                subject                
+                , content 
+            )
+            values (
+                 #{cyh_subject}
+                ,  #{cyh_content}
+            )
+    </insert>  
+
+</mapper>
