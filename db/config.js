@@ -4,5 +4,4 @@ module.exports = {
     user : "admin",
     password : "cha9187!",
     port : 3306,
-    connectionLimit : 66
 }

@@ -4,34 +4,24 @@ import axios from 'axios'
 import $ from 'jquery';
 
 
-
 function InsertInterview(props){
-
-
-
-
+  
    const [message, setMessage ] = useState(''); //에러출력 변수
 
-
-
-
    const submitInterview = async (type, e) => { //버튼클릭시 실행
-
-
-
 
     const  fnValidate = () =>{ 
       if(!$('#agreeTerm').is(':checked')){ 
           setMessage("동의하시게나");
           return false;
       } 
-      if($('#cyh_subject').val() == '' ){
-        $('#cyh_subject').focus();
+      if($('#wr_subject').val() == '' ){
+        $('#wr_subject').focus();
         setMessage("제목넣기");       
         return false;
       } 
-      if($('#cyh_content').val() == '' ){
-        $('#cyh_content').focus();
+      if($('#wr_content').val() == '' ){
+        $('#wr_content').focus();
         setMessage("내용넣기");       
         return false;
     }                  
@@ -83,26 +73,17 @@ function InsertInterview(props){
   useEffect((e)=>{      
     submitInterview(props.dbinfo.botable, e)
   }, [message])
-
-
-
-
-
-
+    
 
   return (
-
     <div className={props.dbinfo.botable + " container py-5"}>
-
       <h3 className='title'>{props.dbinfo.titlenm}</h3>
-
       <Form action=""  method='post' name={props.dbinfo.botable}>       
         <FormGroup>
-
           <input type='hidden' name='crud' value={props.dbinfo.crud} />
           <input type='hidden' name='mapper' value={props.dbinfo.mapper} />
           <input type='hidden' name='mapperid' value={props.dbinfo.mapperid} />
-          </FormGroup>
+        </FormGroup>
         <div className='formStyle'>
         <FormGroup>
           <Label for="wr_subject">인터뷰제목</Label>
@@ -121,6 +102,7 @@ function InsertInterview(props){
         </FormGroup>
         <Button onClick={e => { submitInterview(props.dbinfo.botable, e) }}>글쓰기</Button>
       </Form>
+      
       <p>{ message  }</p>
     </div>
   )

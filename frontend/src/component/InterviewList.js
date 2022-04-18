@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+
 import { Link } from 'react-router-dom';
 import Accordion from 'react-bootstrap/Accordion';
+
 
 import axios from 'axios';
 
@@ -10,18 +12,18 @@ class Classcomponent extends Component {
         this.state ={
             message : '서비스요청을 기다리는 중...',
             interviewData : [],
-            deleteDB : async (no) => {
+            deleteDB : async (key_id) => {
                 try{
-
+               
                     axios.post('/api?type=interviewDelete', {
-
+                        
                         body :{ 
                                 no : key_id,
                                 crud : 'delete',
                                 mapper : this.props.dbinfo.mapper,
                                 mapperid :'interviewDelete'
                          }
-
+            
                     }).then( res => {                 
                         console.log(res.data) //데이터 콘솔에서 확인            
                         try{                  
@@ -30,29 +32,31 @@ class Classcomponent extends Component {
                         catch(err){
                             this.setState({ message : 'DB데이터타입검수바람 ' +  err});
                         }
-
+            
                     }).catch( err => {
-                        this.setState({ message : '접속하였으나 처리하지 못함 ' +  err});
+                        this.setState({ message : '접속하였으나 처리하지 못함 //////////////' +  err});
                     })
                    }
                    catch(err){
                        this.setState({ message : '서버접속불가 ' +  err});
                    }  
-
+        
             }
+            
         }
+        
     }
     componentDidMount = async () => {
         try{
-
-        axios.post('/api?type='+this.props.dbinfo.botable, {
+       
+        axios.get('/api?type='+this.props.dbinfo.botable, {
             headers :{ 'Content-Type' : 'application/json' },
             body : { ...this.props.dbinfo }
 
         }).then( res => { 
-
+            
             console.log(res.data) //데이터 콘솔에서 확인
-
+        
             try{
                 this.setState({ interviewData : [...res.data] }) 
                 // array는 대체되는 정보로 쓸수없기때문에 대입식불가
@@ -62,22 +66,23 @@ class Classcomponent extends Component {
             catch(err){
                 this.setState({ message : 'DB데이터타입검수바람 ' +  err});
             }
-
         }).catch( err => {
-            this.setState({ message : '접속하였으나 처리하지 못함 ' +  err});
+            this.setState({ message : '접속하였으나 처리하지 못함 /////////////' +  err});
         })
        }
        catch(err){
            this.setState({ message : '서버접속불가 ' +  err});
-       }  
-
+       } 
     }
+
+    
+
     render() {
         return (
             <Accordion defaultActiveKey="0" flush className={ ' container  py-5'}  tag ='div' >
                 <h2>{ this.state.interviewData.length > 0 ? this.props.dbinfo.titlenm + "("+ this.state.interviewData.length + ")" : this.state.message } </h2>
                     {
-
+                        
                      this.state.interviewData.map(
                          (content,i) =>
                          {
@@ -85,7 +90,7 @@ class Classcomponent extends Component {
                                 <Accordion.Item eventKey={i.toString()} key={ content.key_id } >
 
                                     <Accordion.Header>
-
+                                   
                                         <strong className='row justify-content-between align-items-center w-100'>
                                             <span className='col-sm-9 mb-0'> { content.cyh_subject }</span>
                                             <span className='btn interviewBtn col-sm-3  mb-0'>

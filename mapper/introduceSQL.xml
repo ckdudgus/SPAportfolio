@@ -4,25 +4,25 @@
     <select id="interviewList">
         select 
             *
-        from cyh_preinterview.cyh.interview_new
-        order by no desc
+        from cyh_preinterview.cyh_interview_new
+        order by key_id desc
     </select>
     <insert id="interviewInsert">
         insert into 
-            cyh_preinterview.cyh.interview_new (
-                subject                
-                , content 
+            cyh_preinterview.cyh_interview_new (
+                cyh_subject                
+                , cyh_content 
             )
             values (
-                 #{cyh_subject}
-                ,  #{cyh_content}
+                 #{wr_subject}
+                ,  #{wr_content}
             )
     </insert> 
     <delete id="interviewDelete">
         delete from
-            cyh_preinterview.cyh.interview_new
+            cyh_preinterview.cyh_interview_new
         where 
-            no = #{key_id}
+            key_id = #{no}
     </delete> 
 
 </mapper>
