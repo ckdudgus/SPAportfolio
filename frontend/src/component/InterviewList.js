@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+import Accordion from 'react-bootstrap/Accordion';
 
 import axios from 'axios';
 
@@ -74,34 +74,35 @@ class Classcomponent extends Component {
     }
     render() {
         return (
-            <div className={ ' container text-center py-5'}>
-                 <h2>{ this.state.interviewData.length > 0 ? this.props.dbinfo.titlenm + "("+ this.state.interviewData.length + ")" : this.state.message }</h2>                 
-                 {
+            <Accordion defaultActiveKey="0" flush className={ ' container  py-5'}  tag ='div' >
+                <h2>{ this.state.interviewData.length > 0 ? this.props.dbinfo.titlenm + "("+ this.state.interviewData.length + ")" : this.state.message } </h2>
+                    {
+
                      this.state.interviewData.map(
-                         (content) =>
+                         (content,i) =>
                          {
                              return (
-                                 <dl className='row' key={ content.no }>
-                                     <dt className='border-top border-bottom'>
-                                        <div className='row justify-content-between align-items-center'>
-                                            <p className='col-sm-9 mb-0'>{ content.subject }</p>
-                                            <p className='btn interviewBtn col-sm-3  mb-0'>
-                                            <Link to={'/interviewModify/'+ content.key_id } className='modify btn btn-primary mx-1 '>M</Link>
-                                            <a href="#" onClick={ e=>{ this.state.deleteDB(content.key_id) }} className='delete btn btn-primary mx-1'>D</a>
-                                            </p>                                            
-                                     </div>
-                                    </dt>
-                                    <dd className='p-5'>
-                                     { content.content }
-                                    </dd>
+                                <Accordion.Item eventKey={i.toString()} key={ content.key_id } >
 
+                                    <Accordion.Header>
 
-                                 </dl>
+                                        <strong className='row justify-content-between align-items-center w-100'>
+                                            <span className='col-sm-9 mb-0'> { content.cyh_subject }</span>
+                                            <span className='btn interviewBtn col-sm-3  mb-0'>
+                                                <Link to={'/interviewModify/'+ content.key_id } className='modify btn btn-primary mx-1 '>M</Link> 
+                                                <a href="#" onClick={ e=>{ this.state.deleteDB(content.key_id) }}  className='delete btn btn-primary mx-1'>D</a>
+                                            </span>                                            
+                                        </strong>
+                                    </Accordion.Header>
+                                    <Accordion.Body>
+                                            { content.cyh_content }
+                                    </Accordion.Body>
+                                </Accordion.Item>
                              )
                          }
                      )
-                 }
-            </div>
+                    }
+            </Accordion>            
         );
     }
 }

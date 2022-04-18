@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import axios from 'axios'
 import $ from 'jquery';
 
@@ -95,32 +96,31 @@ function InsertInterview(props){
 
       <h3 className='title'>{props.dbinfo.titlenm}</h3>
 
-      <form action=""  method='post' name={props.dbinfo.botable}>
+      <Form action=""  method='post' name={props.dbinfo.botable}>       
+        <FormGroup>
 
           <input type='hidden' name='crud' value={props.dbinfo.crud} />
           <input type='hidden' name='mapper' value={props.dbinfo.mapper} />
           <input type='hidden' name='mapperid' value={props.dbinfo.mapperid} />
-          <div className='formStyle'>
-                <dl>
-                    <dt><label htmlFor='cyh_subject'>인터뷰제목</label></dt>
-                    <dd>
-                        <input type='text' name='cyh_subject' id="cyh_subject"  />
-                    </dd>
-                </dl>
-                <dl>
-                    <dt><label htmlFor="wr_content">인터뷰내용</label></dt>
-                    <dd>
-                        <textarea rows={5} name="wr_content" id="wr_content"   >
-                        </textarea>
-                    </dd>
-                </dl>
-                <div className="agree">
-                    <input type="checkbox" id="agreeTerm" />
-                    <label htmlFor="agreeTerm"><span>개인정보정책동의</span></label>
-                </div>   
-                <p><a href='#' onClick={e => { submitInterview(props.dbinfo.botable, e) }} >글쓰기</a></p>             
-            </div>          
-      </form>
+          </FormGroup>
+        <div className='formStyle'>
+        <FormGroup>
+          <Label for="wr_subject">인터뷰제목</Label>
+          <Input type="text" name='wr_subject' id="wr_subject" />
+        </FormGroup>
+        <FormGroup>
+          <Label for="exampleText">인터뷰내용</Label>
+          <Input type="textarea" name="wr_content" id="wr_content" />
+        </FormGroup>       
+        </div>
+        <FormGroup check className="agree">
+          <Label check>
+            <Input type="checkbox" id="agreeTerm" />{' '}
+            <span>개인정보정책동의</span>
+          </Label>
+        </FormGroup>
+        <Button onClick={e => { submitInterview(props.dbinfo.botable, e) }}>글쓰기</Button>
+      </Form>
       <p>{ message  }</p>
     </div>
   )
