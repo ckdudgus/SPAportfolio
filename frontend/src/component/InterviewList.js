@@ -57,7 +57,7 @@ class Classcomponent extends Component {
                                         <div className='row justify-content-between align-items-center'>
                                             <p className='col-sm-9 mb-0'>{ content.subject }</p>
                                             <p className='btn interviewBtn col-sm-3  mb-0'>
-                                                <Link to="/interviewModify" className='modify btn btn-primary mx-1 '>M</Link> 
+                                            <Link to={'/interviewModify/'+ content.key_id } className='modify btn btn-primary mx-1 '>M</Link>
                                                 <a href="#" className='delete btn btn-primary mx-1'>D</a>
                                             </p>                                            
                                      </div>
