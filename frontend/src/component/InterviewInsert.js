@@ -3,11 +3,21 @@ import axios from 'axios'
 import $ from 'jquery';
 
 
+
 function InsertInterview(props){
+
+
+
 
    const [message, setMessage ] = useState(''); //에러출력 변수
 
+
+
+
    const submitInterview = async (type, e) => { //버튼클릭시 실행
+
+
+
 
     const  fnValidate = () =>{ 
       if(!$('#agreeTerm').is(':checked')){ 
@@ -58,26 +68,35 @@ function InsertInterview(props){
               setMessage('답을 못가져옴 서버어느파일인지 조사해야함 '+err )
             }
           )  
-
+        
         }
       catch(err){
         setMessage('서버연결도 안됨 '+err )
 
       }
     }
-
+    
   } //// submitInterview
 
-
+  
   useEffect((e)=>{      
     submitInterview(props.dbinfo.botable, e)
   }, [message])
 
 
+
+
+
+
+
   return (
-    <div className={props.dbinfo.botable + " container"}>
+
+    <div className={props.dbinfo.botable + " container py-5"}>
+
       <h3 className='title'>{props.dbinfo.titlenm}</h3>
+
       <form action=""  method='post' name={props.dbinfo.botable}>
+
           <input type='hidden' name='crud' value={props.dbinfo.crud} />
           <input type='hidden' name='mapper' value={props.dbinfo.mapper} />
           <input type='hidden' name='mapperid' value={props.dbinfo.mapperid} />
@@ -91,7 +110,7 @@ function InsertInterview(props){
                 <dl>
                     <dt><label htmlFor="wr_content">인터뷰내용</label></dt>
                     <dd>
-                        <textarea rows={5} name="cyh_content" id="cyh_content"   >
+                        <textarea rows={5} name="wr_content" id="wr_content"   >
                         </textarea>
                     </dd>
                 </dl>
